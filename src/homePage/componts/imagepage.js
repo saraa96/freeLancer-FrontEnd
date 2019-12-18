@@ -21,12 +21,12 @@ export default class imagepage extends Component {
   from={{ opacity: 0 }}
   to={{ opacity: 1 }}>
   {props => <div  className="btnhome" style={props}>
-  <h1 style={{fontSize:"35px" }} >
+  <h1 style={{fontSize:"40px" }} >
 <strong>
 Hire expert freelancers for any job, online<br/></strong></h1>
-<p style={{  marginLeft:"7%"}}>Millions of small businesses use Freelancer to turn their ideas into reality.</p>
-  <Button style={{marginLeft:"15%" , width: "150px"}} variant="success"  size="lg" href='/addProject'> Hire</Button>
-<Button style={{marginLeft:"15px",width: "150px"}} variant="outline-success"  size="lg" >Work</Button>
+<p >Millions of small businesses use Freelancer to turn their ideas into reality.</p>
+  <Button style={{  width: "150px"}} variant="success"  size="lg" href='/addProject'> Hire</Button>
+<Button style={{width: "150px"}} variant="outline-success"  size="lg" >Work</Button>
   </div>
   
   }
