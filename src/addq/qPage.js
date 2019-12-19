@@ -5,6 +5,7 @@ import {Container,Card,Row,Col,Image,Button,Dropdown,ButtonToolbar,SplitButton} 
 import AddQ from './addq'
 import axios from 'axios'
 import Show from './ShowPost'
+
 import {
   BrowserRouter ,
   Switch,
@@ -14,7 +15,7 @@ import {
 export default class qPage extends Component {
 state={
   data:'',
-  loading: true
+  loading: true,
 }
   loadData = () => {
     return axios
@@ -33,7 +34,6 @@ state={
 
    componentDidMount(){
 this.loadData()
-
    }
     render() {
       let Questions
@@ -86,6 +86,7 @@ if (this.state.loading === false) {  Questions = this.state.data.map(item =>
         <Col cclass="col-3" >
 
         <AddQ/> 
+     
         </Col>  
             </Row>
             
@@ -161,7 +162,7 @@ if (this.state.loading === false) {  Questions = this.state.data.map(item =>
       <Switch>
  <Route path="/post/:id"  render={({match}) => {
             return  <Show 
-            post={this.state.data.find(post => post._id === match.params.id) }  />}  } component ={Show} />
+            post={this.state.data.find(post => post._id === match.params.id) } />}  } component ={Show} />
                </Switch>
     </BrowserRouter> 
 </div> 

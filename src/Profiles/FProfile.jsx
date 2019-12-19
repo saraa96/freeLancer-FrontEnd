@@ -1,124 +1,122 @@
 import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { Rating } from "semantic-ui-react";
-// import FTable from "./FTable";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import EmailIcon from "@material-ui/icons/Email";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import ModeCommentOutlinedIcon from "@material-ui/icons/ModeCommentOutlined";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
-import { red } from "@material-ui/core/colors";
-import { Link, Route, BrowserRouter as Router } from "react-router-dom";
-// import {  Divider } from 'semantic-ui-react'
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-// import { useSelector } from 'react-redux'
-
-const useStyles = makeStyles(theme => ({
- card: {
-  maxWidth: 320
- },
- media: {
-  height: 0,
-  paddingTop: "56.25%" // 16:9
- },
- avatar: {
-  backgroundColor: red[500]
+import FTable from "../freelancer/FTable";
+import { Card } from "react-bootstrap";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import store from "../../src/store";
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+const user = store.getState();
+export default class CHome extends Component {
+ state = {
+  data: null,
+  loading: false
+ };
+ componentDidMount() {
+  axios
+   .get("http://localhost:5001/projects/all")
+   .then(res => {
+    // console.log(res.data)
+    this.setState({ data: res.data, loading: true });
+   })
+   .catch(err => {
+    console.log(err);
+   });
  }
-}));
- function FProfile(props) {
-// console.log(props.auth)
-const user = props.auth.user
-
-console.log(user)
-// const { user } = props.auth;
-
-
- const classes = useStyles();
- return (
-    
-  <div className="ml-lg-5">
-   
-   <Row>
-    <Col style={{ marginTop: "0px" }}>
-     <p style={{ marginTop: "30px", marginBottom: "20px" }}>
-      {" "}
-      Current Projects{" "}
-     </p>
-     {/* <FTable></FTable> */}
-     <Row style={{ marginTop: "40px" }}>
-      <Col>
-       <p>My Projects</p>
-      </Col>
-     </Row>
-     <Row>
-<Col md={{ offset: 4, span: 4 }}>
-<Link className="info" to={`/addProject/${props.match.params.id}`}>
-              Add Project
-            </Link>
-</Col>
-     </Row>
-     <Row>
-      <Col>p1</Col>
-      <Col>p2</Col>
-      <Col>p3</Col>
-     </Row>
-    </Col>
-    <Col md={{ offset: 0, span: 4 }}>
-     <Card style={{ marginTop: "80px" }} className={classes.card}>
-      <CardHeader
-       avatar={
-        <Avatar aria-label="recipe" className={classes.avatar}>
-         R
-        </Avatar>
-       }
-       title="Hello Ragad A."
-       subheader="Last Login"
-      />
-      <Rating icon="star" defaultRating={3} maxRating={4} />
-      <CardContent style={{ margin: "10px" }}>
-       <EmailIcon fontSize="large" style={{ margin: "10px" }} />
-       <TwitterIcon fontSize="large" style={{ margin: "10px" }} />
-       <FacebookIcon fontSize="large" style={{ margin: "10px" }} />
-       <GitHubIcon fontSize="large" style={{ margin: "10px" }} />
-       <LinkedInIcon fontSize="large" style={{ margin: "10px" }} />
-      </CardContent>
-     </Card>
-    </Col>
-   </Row>
-   <Row className="mb-sm-5" style={{ marginTop: "120px" }}>
-    <Col md={{ offset: 11 }}>
-     {/* <Router>
-      <Route> */}
-       <Link to={`/chat?name=${user.name}&room=${`${props.match.params.id}`}`}>
-        {console.log(props.match.params.id)}
-        <img
-         hight="50px"
-         width="50px"
-         src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-and-lines-1/2/11-512.png"
-        ></img>
-       </Link>
-      {/* </Route>
-     </Router> */}
-    </Col>
-   </Row>
-  </div>
- );
+ render() {
+  let list;
+  let i = 0;
+  if (this.state.loading) {
+   list = this.state.data.map(item => {
+    //  console.log(item)
+    i++;
+    if (item.freelancer_ids.includes(this.props.match.params.id)) {
+     console.log(item);
+     return (
+      <Card>
+       <Card.Header>{item.title}</Card.Header>
+       <Card.Body>
+        <blockquote className="blockquote mb-0">
+         <p>{item.description}</p>
+         <footer className="blockquote-footer">
+          {`${item.client_name},  ${item.staus}`}
+         </footer>
+        </blockquote>
+       </Card.Body>
+      </Card>
+     );
+    }
+   });
+  }
+  return (
+   <div>
+    <div className="row py-5 px-4">
+     {console.log(user)}
+     <div className="bg-white shadow rounded overflow-hidden">
+      <br />
+      <div className="px-4 pt-0 pb-4 bg-dark">
+       <div className="media align-items-end profile-header">
+        <div className="profile mr-3">
+         <br />
+         <img
+          src="https://elysator.com/wp-content/uploads/blank-profile-picture-973460_1280-e1523978675847.png"
+          alt="..."
+          width="130"
+          class="rounded mb-2 img-thumbnail"
+         />
+         <a href="#" className="btn btn-dark btn-sm btn-block">
+          Edit profile
+         </a>
+        </div>
+        <div className="media-body mb-5 text-white">
+         <h4 className="mt-0 mb-0">Israa Shuri</h4>
+         <p className="small mb-4">
+          {" "}
+          <i class="fa fa-map-marker mr-2"></i>Makkah
+         </p>
+        </div>
+       </div>
+       <br />
+       <div className="bg-light p-4 d-flex justify-content-end text-center">
+        <div className="mr-auto">
+         <Link to={`/chat?name=${store.getState().auth.user.name}&room=${this.props.match.params.id}`}>
+          <ChatBubbleOutlineIcon fontSize="large" />
+         </Link>
+        </div>
+        <ul className="list-inline mb-0">
+         <li className="list-inline-item">
+          <h5>241</h5> <i class="fa fa-file mr-1" />
+          Project
+         </li>
+         <li className="list-inline-item">
+          <h5>Rating</h5> <i class="fa fa-star mr-1" />
+          <i className="fa fa-star mr-1" />
+          <i className="fa fa-star-half-o mr-1" />
+          <i className="fa fa-star-o mr-1" />
+          <i className="fa fa-star-o mr-1" />
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div className="py-4 px-4">
+       <div className="d-flex align-items-center justify-content-between mb-3">
+        <h5 className="mb-0"> Recent Projects </h5>
+        <a href="#" class="btn btn-link text-muted">
+         Show all
+        </a>
+       </div>
+       <div
+        style={{
+         display: "grid",
+         gridTemplateColumns: "repeat(3, 1fr)",
+         gridGap: 20,
+         margin: "auto"
+        }}
+       ></div>
+       {list}
+      </div>
+     </div>
+    </div>
+   </div>
+  );
+ }
 }
-FProfile.propTypes = {
-    // logoutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-  };
-  const mapStateToProps = state => ({
-    auth: state.auth
-  });
-  export default connect(
-    mapStateToProps,
-    // { logoutUser }
-  )(FProfile);

@@ -12,7 +12,7 @@ const errorPayment = data => {
   alert('Payment Error');
 };
 const onToken = (amount, description) => token =>
-  axios.post("http://localhost:3000/charges",
+  axios.get("http://localhost:5001/payment/",
     {
       description,
       source: token.id,

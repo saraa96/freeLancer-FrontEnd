@@ -64,6 +64,7 @@ onSubmit(e){
             pic:this.state.url,
             tags:this.state.chips,
             client_id:this.state.client_id,
+            client_name:this.state.client_name,
         }
         axios.post('http://localhost:5001/projects/add',project)
         .then(res => console.log(res.data)
@@ -190,6 +191,7 @@ let tag = this.state.chips.map(x => x + " ");
 // console.log(this.state);
 
     return (
+      <center>
       <div>
         {/* <Container> */}
         
@@ -201,7 +203,7 @@ let tag = this.state.chips.map(x => x + " ");
               showNumber={false}
             />
 
-            <div style={{ marginTop: "40px" }}>
+            <div style={{ marginTop: "40px" }} >
               {this.state.activeStep === 1 ? (
                 <div>
                   {" "}
@@ -261,16 +263,18 @@ let tag = this.state.chips.map(x => x + " ");
                 </div>
               ) : this.state.activeStep === 2 ? (
                 <div>
+                <center>
                   <h1 className="classh1">What skills are required?</h1>
                   Enter up to 3 skills that best describe your project.
                   Freelancers will use these skills to find projects they are
                   most interested and experienced in. What skills are required?
-                  <ChipInput
+                  </center>
+                  <center><ChipInput
                     style={{ marginTop: "20px" }}
                     value={this.state.chips}
                     onAdd={this.handleAddition}
                     onDelete={(tag, index) => this.handleDelete(tag, index)}
-                  />
+                  /></center>
                 </div>
               ) : this.state.activeStep === 3 ? (
                 <div>
@@ -321,9 +325,10 @@ let tag = this.state.chips.map(x => x + " ");
                       </section>
                     </form>
 
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-3"  style={{ marginLeft: "40%"}}>
                       <InputGroup.Append>
                         <InputGroup.Text
+                       
                           value={this.state.price}
                           onChange={this.ChangePrice}
                           type="text"
@@ -407,6 +412,7 @@ let tag = this.state.chips.map(x => x + " ");
        {console.log(this.state.client_id)}
         {/* </Container> */}
       </div>
+      </center>
     );
   }
 }

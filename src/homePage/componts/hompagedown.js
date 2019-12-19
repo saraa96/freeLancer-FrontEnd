@@ -4,8 +4,9 @@ export default class hompagedown extends Component {
     render() {
         return (
           <>
+        
                 <div className="down">
-            <h1 style={{ fontSize:"30px",paddingTop:"30px" }}>Need work done?</h1>
+            <h1 style={{ fontSize:"30px",paddingTop:"30px",marginRight:"100px" }}>Need work done?</h1>
 <Row style={{boxshadow:"none" }}>
 <Col > <Card border="light" style={{ marginLeft:"30px",width: '18rem' , backgroundColor:"transparent" , border:"none",}}>
   <Card.Img variant="top" src="https://i.ibb.co/L8PwZkM/Screen-Shot-1441-04-16-at-6-02-39-PM-copy.png" />
@@ -42,7 +43,7 @@ export default class hompagedown extends Component {
 
             </div>
   <div className='down2' >
-<h3 className='down2' style={{ fontSize:"30px",paddingTop:"30px" }} > our services :</h3>
+<h3 className='down2' style={{ fontSize:"30px",paddingTop:"30px"}} > our services :</h3>
 
 <div class="box-wrap">
 <Card className='box' style={{ width: '18rem' }}>

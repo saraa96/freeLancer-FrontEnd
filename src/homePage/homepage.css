@@ -16,7 +16,8 @@
 }
 .down{
   margin-top:250px;
-text-align: center;
+  margin-left: 5%;
+  text-align: center;
 }
 .down2{
 background-color: #e8e8e8;
@@ -30,7 +31,6 @@ text-align: center;
   }
   .box{
     margin:2%;
-   
     box-shadow:0 2px 3px 0px rgba(0,0,0,0.25);
     border-radius:3px;
     transition:.2s all; 
@@ -75,4 +75,8 @@ text-align: center;
   .navhref:hover {
     color: #0deca9;
     background: rgba(255, 255, 255, 0.1);
+  }
+  .nav{
+    position: sticky;
+    margin-top: -12px;
   }

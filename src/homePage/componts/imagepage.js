@@ -26,7 +26,7 @@ export default class imagepage extends Component {
 Hire expert freelancers for any job, online<br/></strong></h1>
 <p >Millions of small businesses use Freelancer to turn their ideas into reality.</p>
   <Button style={{  width: "150px"}} variant="success"  size="lg" href='/addProject'> Hire</Button>
-<Button style={{width: "150px"}} variant="outline-success"  size="lg" >Work</Button>
+<Button style={{width: "150px"}} variant="outline-success"  size="lg" href='/projectlist' >Work</Button>
   </div>
   
   }

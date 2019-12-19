@@ -22,6 +22,7 @@ import Qpage from "./addq/qPage";
 import Chat from "./chat/Chat/Chat";
 import Register from "./components/auth/Signup";
 import Login from "./components/auth/Login";
+import ChangePass from './components/auth/ChangePass'
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import CHome from "./Client/CHome";
@@ -46,14 +47,12 @@ if (localStorage.jwtToken) {
 }
 const currentuser = store.getState();
 const type = currentuser.auth.user.type
-
 export default class App extends Component {
  render() {
   return (
    <div>
     <Provider store={store}>
      {console.log(type)}
-
      <BrowserRouter>
       <div className="App">
        <Nav />
@@ -64,34 +63,28 @@ export default class App extends Component {
         {/* <Route exact path="/" component={Landing} /> */}
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        {type =="client" ? (
-         <Route path="/profile/:id" component={FProfile} />
-        ) : (
-         <Route path="/profile/:id" component={CProfile} />
-        )}
-        <PrivateRoute exact path="/checkout" component={Checkout} />
+         <Route path="/freelancer/:id" component={FProfile} />
+         <Route path="/client/:id" component={CProfile} />
+        {/* <PrivateRoute exact path="/checkout" component={Checkout} /> */}
         <PrivateRoute exact path="/post" component={Qpage} />
         <PrivateRoute exact path="/chat" component={Chat} />
-        {/* <PrivateRoute exact path="/addProject" component={addProject} /> */}
+         <PrivateRoute exact path="/changepass" component={ChangePass} />
         <PrivateRoute exact path="/projectlist" component={Displayprojects} />
         {type == "client" ? (
          <PrivateRoute path="/addProject/" component={addProject} />
         ) : (
          <PrivateRoute path="/addProject/" component={addProjectF} />
         )}
-      
         {type != "client" ? (
          <PrivateRoute path="/dashboard/:id" component={FHome} />
         ) : (
          <PrivateRoute path="/dashboard/:id" component={CHome} />
         )}
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        
+        {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
        </Switch>
       </div>
      </BrowserRouter>
     </Provider>
-    
     {/* <Nav/> */}
    </div>
   );

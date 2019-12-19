@@ -9,9 +9,6 @@ import {
 } from "react-bootstrap";
 import axios from 'axios'
 import "./addProject.css";
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
-// import { logoutUser } from "../actions/authActions";
 import storage from "./Firebase/index";
 import ChipInput from "material-ui-chip-input";
 import Stepper from "react-js-stepper";
@@ -186,8 +183,9 @@ let tag = this.state.chips.map(x => x + " ");
 
     return (
       <div>
+      <Container>
         {  console.log(store.getState())}
-        {/* <Container> */}
+        {/* <Container className="addP"> */}
           <React.Fragment >
             <Stepper
               steps={steps}
@@ -196,12 +194,12 @@ let tag = this.state.chips.map(x => x + " ");
               showNumber={false}
             />
 
-            <div style={{ marginTop: "40px" }}>
+            <div className="addP" style={{ marginTop: "40px" }}>
               {this.state.activeStep === 1 ? (
-                <div>
+                <div className="addP">
                   {" "}
-                  <div>
-                    <Container>
+                  <div className="addP">
+                    {/* <Container> */}
                       <Form>
                         <Form.Group controlId="exampleForm.ControlInput1">
                           <Form.Label>
@@ -230,7 +228,7 @@ let tag = this.state.chips.map(x => x + " ");
                           />
                         </Form.Group>
                       </Form>
-                      <div className="center">
+                      <div className="addP">
                         <div className="file-field input-field">
                           <div className="btn">
                             <span>File</span>
@@ -250,17 +248,17 @@ let tag = this.state.chips.map(x => x + " ");
                           width="400"
                         />
                       </div>
-                    </Container>
+                    {/* </Container> */}
                   </div>{" "}
                 </div>
               ) : this.state.activeStep === 2 ? (
                 <div>
-                  <h1 className="classh1">What skills are required?</h1>
+                  <h1 className="addP" >What skills are required?</h1>
                   Enter up to 3 skills that best describe your project.
                   Freelancers will use these skills to find projects they are
                   most interested and experienced in. What skills are required?
                   <ChipInput
-                    style={{ marginTop: "20px" }}
+                    style={{ marginTop: "20px" , float:"left"}}
                     value={this.state.chips}
                     onAdd={this.handleAddition}
                     onDelete={(tag, index) => this.handleDelete(tag, index)}
@@ -287,7 +285,7 @@ let tag = this.state.chips.map(x => x + " ");
 </div>  
               )}
             </div>
-            <div style={{ marginTop: "40px", marginLeft: "25%" }}>
+            <div style={{  marginLeft: "25%" }}>
               <Button
                 variant="success"
                 style={{ marginLeft: "40px", width: "20%" }}
@@ -329,19 +327,10 @@ let tag = this.state.chips.map(x => x + " ");
            <ButterToast position={{vertical: POS_TOP,  horizontal: POS_CENTER}} style={{ top: '50px' }}/>
           </React.Fragment>
         {/* </Container> */}
+        </Container>
       </div>
     );
   }
 }
-// addPost.propTypes = {
-//   logoutUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired
-// };
-// const mapStateToProps = state => ({
-//   auth: state.auth
-// });
+
 export default FAddprojet 
-// connect(
-//   mapStateToProps,
-//   { logoutUser }
-// )(addPost);

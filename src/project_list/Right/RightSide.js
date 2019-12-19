@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import {Image, Navbar, Nav,Container,Col,Button} from 'react-bootstrap'
 import axios from 'axios'
 import store from '../.././store'
+import ButterToast, { Cinnamon, POS_BOTTOM, POS_RIGHT ,POS_TOP,POS_CENTER  } from 'butter-toast';
 export default class RightSide extends Component {
     applyhundler = () => {
         const st = store.getState()
         console.log(st.auth.user.id);
-       const url = `http://localhost:5001/projects/${this.props.details._id}/addfreelancer/${st.auth.user.id}`
+            const url = `http://localhost:5001/projects/${this.props.details._id}/addfreelancer/${st.auth.user.id}`
        //${this.props.details._id}/addfreelancer/${st.auth.user.id}
         axios({
             method: 'POST',
@@ -21,6 +22,9 @@ export default class RightSide extends Component {
         console.log(st.auth.user.id);
         // console.log("ptp");
         // console.log(this.props);
+        let x = st.auth.user.type === "freelancer" ?
+        <center><Button onClick={this.applyhundler}> Apply ...</Button></center>
+        : <p></p>
         let d = this.props.details.price > 0 ?
         <div className="right-detail">
             <figure className="film-backdrop">
@@ -28,8 +32,8 @@ export default class RightSide extends Component {
                     <h2>{this.props.details.description}</h2>
                     <img src={this.props.details.pic} /><br/>
                     <br/>
+                    {x}
                     <br/>
-                    <center><Button onClick={this.applyhundler}> Apply ...</Button></center>
             </figure>
         </div>          
 : <div className="right-detail">
@@ -37,13 +41,11 @@ export default class RightSide extends Component {
             </div>
         return (
             <div className="champs-detail">
-                <div className="right-details">
-            <h1 className="section-title">DETAILS</h1>
-        </div>
+                <br/><br/><br/><br/><br/><br/><br/>
+        <h1>Details:</h1>
+        <br/>
                 {d}
             </div>
         )
     }
 }
-
-

@@ -29,11 +29,16 @@ onSubmit=(e)=>{
         .then(res => console.log(res.data)
         ) 
         console.log(post)
-
-       window.location = '/post'
+this.redirect()
+    }
+    redirect=()=>{
+      window.location = '/post'
     }
 
-
+someFunc=()=>{
+  this.redirect();
+  this.onSubmit();
+}
     setShow=(e)=>{
         this.setState({
 show:e
@@ -71,14 +76,14 @@ console.log(this.props);
        let tag = this.state.chips.map(x => x + " ");
         return (
             < >
-      <Button style= {{float:"right",marginTop:"30px"}} variant="light" onClick={() => this.setShow(true)}>
+      <Button style= {{float:"right",marginTop:"30px",position:"sticky"}} variant="light" onClick={() => this.setShow(true)}>
        
 Ask Question
       </Button>
 
       <Modal
        show={ this.state.show}
-        onHide={() => this.setShow(false)}
+        onHide={() => this.setShow(false) }
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
@@ -110,7 +115,7 @@ Ask Question
                     onDelete={(tag, index) => this.handleDelete(tag, index)}
                   />
                   <br/>
-          <Button variant="dark" type="submit"   onClick={this.onSubmit}>
+          <Button variant="dark" type="submit"  onClick={this.onSubmit} >
        
 Submit your question
       </Button>

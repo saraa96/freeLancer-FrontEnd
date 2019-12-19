@@ -1,55 +1,111 @@
 import React, { Component } from "react";
 import axios from "axios";
+ import store from '../store'
+ import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Card, Container, Form ,Button} from "react-bootstrap";
-export default class ShowPost extends Component {
+class ShowPost extends Component {
   state = {
     data: "",
-    loading: false,
+    loading: true,
     id: this.props.match.params.id,
     comment: "",
-    comments:[],
+      comments:""
   };
   loadData = () => {
     return axios
       .get(`http://localhost:5001/posts/` + this.props.match.params.id)
-      .then(result => {
-        console.log(result);
+      .then(res => {
+        console.log(res);
         this.setState({
-          data: result.data,
-        comments: result.data.comments,
-          loading: false
+          data: res.data,
+          loading: true
         });
       })
       .catch(error => {
         console.error("error: ", error);
       });
   };
-  componentDidMount() {
-    this.loadData();
-  }
-
 
 
   ChangeComment = event => {
-    this.setState({ comment: event.target.value});
-
+    this.setState({ comment: event.target.value})
   };
 
-    pushComment = comment => {
- 
-      let com = this.state.comments
-      com.push(this.state.comment);
-      this.setState({ comments: com });
+onSubmit=(e)=>{
+        e.preventDefault();
+        const comment = {
+             answer: this.state.comment,
+      User_id: this.props.auth.user.id,
+         Post_id: this.props.match.params.id
+        }
+        axios.post('http://localhost:5001/comment/add',comment)
+        .then(res => console.log(res.data)
+        ) 
+        console.log(comment)
+this.redirect()
+    }
+    redirect=()=>{
+      window.location = '/post/:id'
+    }
 
+  loadComment = () => {
+    return axios
+      .get(`http://localhost:5001/comment/all`)
+      .then(result => {
+        console.log(result);
+        this.setState({
+          comments: result.data,
+      loading: false,
+        });
+         console.log(this.state.comments);
+      })
+           .catch(error => {
+        console.error("error: ", error);
+      });
   };
-  render() {
-              console.log(this.state.comment)
 
-//     console.log(this.state.comment);
- console.log(this.state.comments);
+   componentDidMount(){
+this.loadData()
+this.loadComment()
+   }
+    render() {
+      let Ans
+if (this.state.loading === false) {  Ans = this.state.comments.map(item => 
+ <div className="ans">
+   <div  style={{width:"700px",marginTop:"100px",marginBottom:"60px"}} class="ui card">
+  <div  class="content">
+
+    <div class="meta">
+     
+      <br/>
+      
+    </div>
+    <div style={{float:"left"}} class="description">
+      <p >
+       {item.answer}
+      </p> 
+    
+    </div> 
+  </div>
+  <div class="extra content">
+  
+    <div class="right floated author">
+      <img class="ui avatar image" src="https://capenetworks.com/static/images/testimonials/user-icon.svg"/> sara
+    </div>
+       <i class="right floated like icon"></i>
+    <i class="right floated star icon"></i>
+  </div>
+
+</div>
+
+</div>
+
+  ) 
+}
     return (
       <div>
-        {/* <Container > */}
+
         <Card
           border="light"
           style={{
@@ -98,12 +154,21 @@ export default class ShowPost extends Component {
                 as="textarea"
                 rows="6"
               />
-              <Button onClick={this.pushComment} > submit</Button>
+              <Button onClick={this.onSubmit }> submit</Button>
             </Form.Group>
           </Form>
         </Card>
-        {/* </Container> */}
-      </div>
+        {Ans}
+  </div>
     );
   }
 }
+ShowPost.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+)(ShowPost);

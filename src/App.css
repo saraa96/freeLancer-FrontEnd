@@ -258,3 +258,122 @@ img {
  font-size: 3em;
  margin-bottom: 0.25em;
 }
+.thr {
+  height: 150px;
+  width: 300px;
+}
+.champs{
+ position: relative;
+ display: flex;
+ width: 100%;
+ height: 100%;
+ align-items: stretch;
+ justify-content: space-around;
+ overflow: hidden;
+ }
+.champs-details {
+ flex: 0 1 70%;
+ height: 700px;
+ padding: 40px;
+ background-color: Black;
+ overflow: auto;
+}
+.film-row {
+ display: grid;
+ position: relative;
+ grid-template-columns: 1fr 3fr;
+ box-shadow: 5px 2px 20px 0 rgba(43, 89, 126, 0.8);
+ background-color: antiquewhite;
+ margin-bottom: 0.2rem;
+ font-size: 0.5em;
+}
+.film-row:hover {
+ cursor: pointer;
+}
+.project {
+ position: relative;
+ display: flex;
+ width: 100%;
+ height: 100%;
+ align-items: stretch;
+ justify-content: space-around;
+}
+.left-list {
+ position: relative;
+ flex: 1 0 33.333333%;
+ height: 90px;
+ /* height: 700px;
+ padding: 3.6em 0 0; */
+ /* overflow-y: scroll;*/
+ max-height: max-content;
+}
+.left-list > .section-title {
+ width: 33.333333%;
+ left: 0;
+}
+.right-details {
+ flex: 0 1 66.666666%;
+ background-color: #f0f0f0;
+}
+/* .section-title {
+ position: fixed;
+ top: 0;
+ z-index: 10;
+ background-color: #777;
+ color: white;
+ text-align: center;
+ font-size: 0.75em;
+ padding: 0.5em;
+ margin: 0 0 0.1em;
+ letter-spacing: 0.3em;
+ text-transform: uppercase;
+} */
+/* .header {
+background-image:  url("../src/img/home-bg.jpg");
+} */
+.section-title {
+ position: fixed;
+ top: 0;
+ z-index: 10;
+ color: white;
+ text-align: center;
+ font-size: 1.5em;
+ padding: 0.5em;
+ margin: 0 0 0.1em;
+ letter-spacing: 0.3em;
+ height: 50px;
+ text-transform: uppercase;
+ overflow: hidden;
+}
+.right-details {
+ position: relative;
+ overflow-y: scroll;
+}
+.right-details > .section-title {
+ left: 33.333333%;
+ width: 66.666666%;
+}
+img {
+ display: block;
+ max-width: 100%;
+}
+.fixed{
+ padding: 15px auto;
+ background-color: lightblue;
+ height: 43%;
+ overflow: auto;
+ border-radius: 10px;
+}
+.right-detail {
+ display: flex;
+ min-height: 100vh;
+ align-items: center;
+ overflow-y: scroll;
+ margin-bottom: 2em;
+ width: 800px;
+}
+.right-detail > p > .material-icons {
+ display: block;
+ font-size: 3em;
+ margin-bottom: 0.25em;
+}
