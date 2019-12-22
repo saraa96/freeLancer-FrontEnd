@@ -75,11 +75,11 @@ wait () {
       <Accordion.Collapse eventKey="0">
     <Card.Body>{project.freelancer_ids.map( tag => {return <div>Freelancer: <br/>
       <Link to ={`/freelancer/${tag}`}> see profile </Link>
-      <Checkout
+      {/* <Checkout
              name={st.auth.user.name}
              description={'Only the Book'}
              amount={11111}
-            />
+            /> */}
       <button > accept this freelance</button>
       <br/>
       <br/>

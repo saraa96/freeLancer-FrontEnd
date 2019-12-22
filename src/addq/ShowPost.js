@@ -36,7 +36,7 @@ onSubmit=(e)=>{
         e.preventDefault();
         const comment = {
              answer: this.state.comment,
-      User_id: this.props.auth.user.id,
+      User_id: this.state.id,
          Post_id: this.props.match.params.id
         }
         axios.post('http://localhost:5001/comment/add',comment)
@@ -46,7 +46,7 @@ onSubmit=(e)=>{
 this.redirect()
     }
     redirect=()=>{
-      window.location = '/post/:id'
+      window.location = `/post/${this.state.id}`
     }
 
   loadComment = () => {
@@ -91,7 +91,7 @@ if (this.state.loading === false) {  Ans = this.state.comments.map(item =>
   <div class="extra content">
   
     <div class="right floated author">
-      <img class="ui avatar image" src="https://capenetworks.com/static/images/testimonials/user-icon.svg"/> sara
+      <img class="ui avatar image" src="https://capenetworks.com/static/images/testimonials/user-icon.svg"/> mohammed
     </div>
        <i class="right floated like icon"></i>
     <i class="right floated star icon"></i>

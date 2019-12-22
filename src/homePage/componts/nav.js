@@ -57,7 +57,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
               }}
               onClick={this.onLogoutClick}
             >
-             < ExitToAppIcon fontSize='large'></ExitToAppIcon>
+             <ExitToAppIcon fontSize='large'></ExitToAppIcon>
             </button>
     </Nav>)
     :

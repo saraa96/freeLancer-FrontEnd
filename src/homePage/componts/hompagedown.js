@@ -45,7 +45,7 @@ export default class hompagedown extends Component {
   <div className='down2' >
 <h3 className='down2' style={{ fontSize:"30px",paddingTop:"30px"}} > our services :</h3>
 
-<div class="box-wrap">
+<div className="box-wrap">
 <Card className='box' style={{ width: '18rem' }}>
   <Card.Img variant="top" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
   <Card.Body>
